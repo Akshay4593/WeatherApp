@@ -25,5 +25,46 @@
             </objects>
             <point key="canvasLocation" x="113" y="161"/>
         </scene>
+        <!--City NameVC-->
+        <scene sceneID="LtQ-38-IT6">
+            <objects>
+                <viewController storyboardIdentifier="CityNameVC" id="Goe-Zg-ubn" customClass="CityNameVC" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3YG-yD-j9n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="udp-50-GIH">
+                                <rect key="frame" x="30" y="218.5" width="315" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpI-8v-3VH">
+                                <rect key="frame" x="164.5" y="278.5" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="btnAction:" destination="Goe-Zg-ubn" eventType="touchUpInside" id="dKp-DS-n2Y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="udp-50-GIH" firstAttribute="centerX" secondItem="3YG-yD-j9n" secondAttribute="centerX" id="aBO-fM-K9U"/>
+                            <constraint firstItem="XpI-8v-3VH" firstAttribute="top" secondItem="udp-50-GIH" secondAttribute="bottom" constant="30" id="dbn-9A-xdY"/>
+                            <constraint firstItem="U7W-s9-Bju" firstAttribute="trailing" secondItem="udp-50-GIH" secondAttribute="trailing" constant="30" id="gg8-ar-hcI"/>
+                            <constraint firstItem="XpI-8v-3VH" firstAttribute="centerX" secondItem="3YG-yD-j9n" secondAttribute="centerX" id="nGp-A9-lsU"/>
+                            <constraint firstItem="udp-50-GIH" firstAttribute="centerY" secondItem="3YG-yD-j9n" secondAttribute="centerY" multiplier="0.7" id="raw-Ns-jsa"/>
+                            <constraint firstItem="udp-50-GIH" firstAttribute="leading" secondItem="U7W-s9-Bju" secondAttribute="leading" constant="30" id="z5d-nM-8E3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="U7W-s9-Bju"/>
+                    </view>
+                    <connections>
+                        <outlet property="cityTextField" destination="udp-50-GIH" id="Q4o-uR-830"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDb-Ng-BhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="770" y="155"/>
+        </scene>
     </scenes>
 </document>

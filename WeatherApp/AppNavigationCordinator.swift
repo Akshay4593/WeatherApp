@@ -16,13 +16,13 @@ class AppNavigationCordinator {
     
     private init() {}
     
-    func createWeatherDetailsModule() -> UIViewController {
+    func createWeatherDetailsModule(city: String) -> UIViewController {
         let vc = UIStoryboard(name: "Weather", bundle: nil)
             .instantiateViewController(withIdentifier: "WeatherDetailsVC") as! WeatherDetailsVC
         
-        var presenter: WeatherDetailsPresenterProtocol & WeatherDetailsOutputInteractorProtocol = WeatherDetailsPresenter()
-        var interactor: WeatherDetailsInputInteractorProtocol = WeatherDetailsInteractor()
-        var wireFrame: WeatherDetailsWireFrameProtocol = WeatherDetailsWireframe()
+        let presenter: WeatherDetailsPresenterProtocol & WeatherDetailsOutputInteractorProtocol = WeatherDetailsPresenter(city: city)
+        let interactor: WeatherDetailsInputInteractorProtocol = WeatherDetailsInteractor()
+        let wireFrame: WeatherDetailsWireFrameProtocol = WeatherDetailsWireframe()
         
         vc.presenter = presenter
         
@@ -32,6 +32,12 @@ class AppNavigationCordinator {
         
         interactor.presenter = presenter
         
+        return vc
+    }
+    
+    func cityNameModule() -> UIViewController {
+        let vc = UIStoryboard(name: "Weather", bundle: nil)
+            .instantiateViewController(withIdentifier: "CityNameVC") as! CityNameVC
         return vc
     }
     

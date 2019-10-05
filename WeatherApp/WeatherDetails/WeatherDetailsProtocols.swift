@@ -18,7 +18,7 @@ protocol WeatherDetailsVCProtocol  {
     
 }
 
-protocol WeatherDetailsPresenterProtocol  {
+protocol WeatherDetailsPresenterProtocol : BasePresenter {
     var view: WeatherDetailsVCProtocol? { get set }
     var interactor: WeatherDetailsInputInteractorProtocol? { get set }
     var wireFrame: WeatherDetailsWireFrameProtocol? { get set }
@@ -33,4 +33,10 @@ protocol WeatherDetailsInputInteractorProtocol: class {
 
 protocol WeatherDetailsOutputInteractorProtocol: class {
  
+}
+
+@objc protocol BasePresenter: class {
+    func viewDidLoad()
+    func viewWillAppear()
+    @objc optional func viewWillDisapper()
 }
