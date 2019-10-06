@@ -37,6 +37,10 @@ class Weather : Codable {
     var description: String = ""
     var icon: String = ""
     
+    var imageFullPath: String {
+        return "\(Constant.WEATHER_MAP_IMAGE_BASE_PATH)/\(icon).png"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case main

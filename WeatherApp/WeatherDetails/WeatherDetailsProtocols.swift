@@ -37,6 +37,8 @@ protocol WeatherDetailsInputInteractorProtocol: class {
 protocol WeatherDetailsOutputInteractorProtocol: class {
  
     func onSuccessWeatherRequest(response: WeatherResponse)
+    func onSuccessForecastRequest(response: ForecastResponse)
+    
 }
 
 @objc protocol BasePresenter: class {
