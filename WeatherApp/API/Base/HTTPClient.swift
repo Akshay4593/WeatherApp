@@ -29,7 +29,6 @@ public enum Result<Value, Error> {
 
 protocol HTTPClientSerivce {
     func dataTask(urlRequest: URLRequest, completion: @escaping ((Result<Data, APIError>) -> Void))
-    func downloadTask(url: String, completion: @escaping ((Result<URL, APIError>) -> Void))
     func cancel()
 }
 
@@ -49,6 +48,7 @@ class HTTPClient: HTTPClientSerivce {
     }
     
     func dataTask(urlRequest: URLRequest, completion: @escaping ((Result<Data, APIError>) -> Void)) {
+        print("Request==>> \(urlRequest.url)")
         task = session.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 completion(Result.failure(APIError.apiError(error)))
@@ -63,21 +63,6 @@ class HTTPClient: HTTPClientSerivce {
                 return
             }
             completion(Result.success(data))
-        }
-        task?.resume()
-    }
-    
-    func downloadTask(url: String, completion: @escaping ((Result<URL, APIError>) -> Void)) {
-        task = session.downloadTask(with: URL(string: url)!) { (url, respone, error) in
-            if let error = error {
-                completion(.failure(APIError.apiError(error)))
-                return
-            }
-            guard let url = url else {
-                completion(Result.failure(APIError.emptyData))
-                return
-            }
-            completion(Result.success(url))
         }
         task?.resume()
     }

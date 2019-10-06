@@ -16,7 +16,7 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     
     var wireFrame: WeatherDetailsWireFrameProtocol?
     
-    var cityName: String?
+    var cityName: String? = ""
     
     init(city: String) {
         self.cityName = city
@@ -27,12 +27,23 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     }
     
     func viewWillAppear() {
-        
+        makeWeatherRequestWebCall()
     }
     
+    private func makeWeatherRequestWebCall(){
+        interactor?.makeWeatherRequest(cityName: cityName!)
+    }
+    
+    private func makeForecastRequestWebCall(){
+        interactor?.makeForecastRequest(cityName: cityName!)
+    }
     
 }
 
 extension WeatherDetailsPresenter : WeatherDetailsOutputInteractorProtocol {
+    func onSuccessWeatherRequest(response: WeatherResponse) {
+        makeForecastRequestWebCall()
+    }
+    
     
 }

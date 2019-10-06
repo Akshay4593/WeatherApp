@@ -20,7 +20,7 @@ extension WeatherRoute {
     }
     
     private var apiEndPoint: String {
-        return "\(baseUrl)/\(version)/\(resource)/\(urlPath)?APPID=\(Constant.API_KEY)"
+        return "\(baseUrl)/\(version)/\(resource)?APPID=\(Constant.API_KEY)"
     }
     
     private var urlPath: String {

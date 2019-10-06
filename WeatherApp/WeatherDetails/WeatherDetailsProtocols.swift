@@ -28,11 +28,15 @@ protocol WeatherDetailsPresenterProtocol : BasePresenter {
 protocol WeatherDetailsInputInteractorProtocol: class {
     var presenter: WeatherDetailsOutputInteractorProtocol? { get set }
     
+    func makeWeatherRequest(cityName: String)
+    func makeForecastRequest(cityName: String)
+    
     
 }
 
 protocol WeatherDetailsOutputInteractorProtocol: class {
  
+    func onSuccessWeatherRequest(response: WeatherResponse)
 }
 
 @objc protocol BasePresenter: class {
