@@ -41,6 +41,17 @@ class AppNavigationCordinator {
         return vc
     }
     
+    func setRootVC() -> UIViewController {
+        
+        let flag = UserDefaults.standard.bool(forKey: Constant.USER_DEFAUL_KEY) ?? false
+        
+        if flag {
+            return createWeatherDetailsModule(city: "Mumbai")
+            
+        } else {
+            return cityNameModule()
+        }
+    }
 
     
 }

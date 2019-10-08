@@ -31,14 +31,30 @@ class ForecastTVCell: UITableViewCell {
         
         collectionView.register(UINib(nibName: "ForecastCVCell", bundle: nil), forCellWithReuseIdentifier: "ForecastCVCell")
         
-        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        collectionViewFlowLayout?.minimumLineSpacing = 16
-        collectionViewFlowLayout?.minimumInteritemSpacing = 16
-        collectionViewFlowLayout?.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        
+//        let collectionViewFlowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+//        collectionViewFlowLayout?.minimumLineSpacing = 16
+//        collectionViewFlowLayout?.minimumInteritemSpacing = 16
+//        collectionViewFlowLayout?.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        
+        let cellWidth : CGFloat = (collectionView.frame.size.width) - (5*8) / 5.0
+        let cellheight : CGFloat = collectionView.frame.size.height
+        let cellSize = CGSize(width: 90 , height:130)
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = cellSize
+        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        layout.minimumLineSpacing = 1.0
+        layout.minimumInteritemSpacing = 1.0
+        collectionView.setCollectionViewLayout(layout, animated: true)
+        
+        collectionView.reloadData()
+    
     }
     
     func configureCell(data: [WeatherResponse]) {
@@ -66,13 +82,14 @@ extension ForecastTVCell : UICollectionViewDataSource {
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize  {
-        
-        let itemHeight: CGFloat = collectionView.frame.height
-        let itemWidth: CGFloat = (UIScreen.main.bounds.width - (5 * 4))/5
-        let itemSize: CGSize = CGSize(width: itemWidth, height: itemHeight)
-        return itemSize
-    }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let itemHeight: CGFloat = collectionView.frame.height
+//        let itemWidth: CGFloat = (UIScreen.main.bounds.width - (5 * 4))/5
+//        let itemSize: CGSize = CGSize(width: itemWidth, height: itemHeight)
+//        return itemSize
+//    }
     
     
     

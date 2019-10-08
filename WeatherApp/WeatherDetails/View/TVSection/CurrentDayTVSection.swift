@@ -9,6 +9,10 @@
 import UIKit
 import Kingfisher
 
+protocol CurrentDayTVSectionDelegate: class{
+    
+    func goBtnTapped(city: String)
+}
 
 class CurrentDayTVSection: UITableViewCell {
 
@@ -20,6 +24,10 @@ class CurrentDayTVSection: UITableViewCell {
     @IBOutlet weak var maxTempLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var horizontalLineLbl: UILabel!
+    
+    weak var delegate: CurrentDayTVSectionDelegate?
+    
+    private var city: String? = ""
     
     
     override func awakeFromNib() {
@@ -42,10 +50,7 @@ class CurrentDayTVSection: UITableViewCell {
             minTempLbl.text = "\(mainData.tempMin.inCelcius) °C"
             maxTempLbl.text = "\(mainData.tempMax.inCelcius) °C"
         }
-        
-        
 
-        
         if let weatherData = currentDayData.weather?.first{
             descriptionLbl.text = weatherData.description
             let urlInString = weatherData.imageFullPath
@@ -53,6 +58,16 @@ class CurrentDayTVSection: UITableViewCell {
             imgView.kf.setImage(with: imgUrl)
         }
         
+        city = currentDayData.name
+        
+    }
+    
+    @IBAction func goBtnAction(_ sender: UIButton) {
+        
+        if let deleagte = delegate,
+          let city = city{
+            deleagte.goBtnTapped(city: city)
+        }
     }
     
 }

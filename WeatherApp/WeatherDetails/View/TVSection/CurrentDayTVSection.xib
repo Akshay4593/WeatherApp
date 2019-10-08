@@ -34,6 +34,9 @@
                                     <constraint firstAttribute="width" constant="46" id="REd-eA-dFM"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="goBtnAction:" destination="dHZ-Cr-YUn" eventType="touchUpInside" id="8pf-Tz-7Nc"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C1N-o9-xXJ">
                                 <rect key="frame" x="154" y="81.5" width="103" height="102.5"/>

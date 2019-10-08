@@ -19,6 +19,7 @@ enum ApiStatus {
 
 class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
 
+
     var view: WeatherDetailsVCProtocol?
     
     var interactor: WeatherDetailsInputInteractorProtocol?
@@ -90,6 +91,7 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
         if forecastApiStatus == .success && weatherApiStatus == .success {
             if let currentDayData = weatherResponse,
                 let weekData = requiredForecastList {
+                setFlagInUserDefault(flag: true)
                 view?.showCurrentDayData(response: currentDayData)
                 view?.showForecastData(response: weekData)
                 stopTimer()
@@ -131,6 +133,16 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
         
     }
     
+    
+    func setFlagInUserDefault(flag: Bool){
+        UserDefaults.standard.set(flag, forKey: Constant.USER_DEFAUL_KEY)
+    }
+    
+    func showCityNameScreen(city: String) {
+        
+        wireFrame?.goToCityNameScreen(city: city, view: view!)
+    }
+    
 }
 
 extension WeatherDetailsPresenter : WeatherDetailsOutputInteractorProtocol {
@@ -152,3 +164,5 @@ extension WeatherDetailsPresenter : WeatherDetailsOutputInteractorProtocol {
     
     
 }
+
+

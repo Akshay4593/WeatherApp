@@ -21,11 +21,22 @@ class CityNameVC: UIViewController {
 
     @IBAction func btnAction(_ sender: UIButton) {
         
-        guard let cityName = cityTextField.text else {
-            return
+        let flag = UserDefaults.standard.bool(forKey: Constant.USER_DEFAUL_KEY) ?? false
+        
+        if flag {
+            
+            dismiss(animated: true, completion: nil)
+            
+        } else {
+            
+            
+            guard let cityName = cityTextField.text else {
+                return
+            }
+            let vc = AppNavigationCordinator.shared.createWeatherDetailsModule(city: cityName)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        let vc = AppNavigationCordinator.shared.createWeatherDetailsModule(city: cityName)
-        self.navigationController?.pushViewController(vc, animated: true)
+    
         
     }
 }

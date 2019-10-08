@@ -85,6 +85,7 @@ extension WeatherDetailsVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         //  let sectionView = tableView.dequeueReusableCell(withIdentifier: "CurrentDayTVSection") as! CurrentDayTVSection
         let sectionView = (Bundle.main.loadNibNamed("CurrentDayTVSection", owner: self, options: nil)![0] as? CurrentDayTVSection)
+        sectionView?.delegate = self
         if let currentDayData = self.currentDayData {
             sectionView?.configureSection(currentDayData: currentDayData)
         }
@@ -118,4 +119,14 @@ extension WeatherDetailsVC : WeatherDetailsVCProtocol {
     }
     
 
+}
+extension WeatherDetailsVC : CurrentDayTVSectionDelegate {
+    
+    func goBtnTapped(city: String) {
+        presenter?.showCityNameScreen(city: city)
+    }
+    
+    
+    
+    
 }

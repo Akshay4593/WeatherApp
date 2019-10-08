@@ -10,6 +10,7 @@ import Foundation
 
 protocol WeatherDetailsWireFrameProtocol: class {
    
+    func goToCityNameScreen(city: String, view: WeatherDetailsVCProtocol)
     
 }
 
@@ -26,6 +27,8 @@ protocol WeatherDetailsPresenterProtocol : BasePresenter {
     var view: WeatherDetailsVCProtocol? { get set }
     var interactor: WeatherDetailsInputInteractorProtocol? { get set }
     var wireFrame: WeatherDetailsWireFrameProtocol? { get set }
+    
+    func showCityNameScreen(city: String)
     
 }
 
