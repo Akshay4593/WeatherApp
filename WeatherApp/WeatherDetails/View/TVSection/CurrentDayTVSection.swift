@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 class CurrentDayTVSection: UITableViewCell {
 
@@ -43,7 +45,9 @@ class CurrentDayTVSection: UITableViewCell {
         
         if let weatherData = currentDayData.weather?.first{
             descriptionLbl.text = weatherData.description
-            let imgUrl = weatherData.imageFullPath
+            let urlInString = weatherData.imageFullPath
+            let imgUrl = URL(string: urlInString)
+            imgView.kf.setImage(with: imgUrl)
         }
         
     }

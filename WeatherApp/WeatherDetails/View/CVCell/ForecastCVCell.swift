@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ForecastCVCell: UICollectionViewCell {
     
@@ -21,7 +22,28 @@ class ForecastCVCell: UICollectionViewCell {
     }
     
     func configureCell(data: WeatherResponse){
-
+        
+        if let dateInTimestramp = data.date {
+            let dateInDateFormat = Date(timeIntervalSince1970: dateInTimestramp )
+            if let dayInWeek = dateInDateFormat.dayInWeek {
+                dayLbl.text = dayInWeek
+            }
+        }
+        
+       if let mainData = data.main {
+        
+        let minTemp = mainData.tempMin
+        let maxTemp = mainData.tempMax
+        tempLabl.text = "\(minTemp)/\(maxTemp)"
+        }
+        
+        if let weatherData = data.weather?.first {
+            let urlInString = weatherData.imageFullPath
+            let imgUrl = URL(string: urlInString)
+            imgView.kf.setImage(with: imgUrl)
+        }
+    
+        
     }
   
 }

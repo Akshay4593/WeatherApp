@@ -34,7 +34,6 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     private var weatherResponse: WeatherResponse?
     
     private var datesArray: [Int] = []
-    
     private var requiredForecastList: [WeatherResponse]? = []
     
     init(city: String) {
@@ -70,11 +69,7 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
             if let currentDayData = weatherResponse,
                 let weekData = requiredForecastList {
                 view?.showCurrentDayData(response: currentDayData)
-                guard let reqForecastList = self.requiredForecastList else {
-                    print("No list")
-                    return
-                }
-                view?.showForecastData(response: reqForecastList)
+                view?.showForecastData(response: weekData)
             }
         }
     }

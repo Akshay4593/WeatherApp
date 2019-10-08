@@ -46,12 +46,21 @@ extension WeatherDetailsVC : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        if let reqListData = weekDataList {
+            return 1
+        }
+        
+        return 0
+        
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastTVCell", for: indexPath) as! ForecastTVCell
+    
+        if let reqListData = weekDataList {
+            cell.configureCell(data: reqListData)
+        }
         
         return cell
     }
@@ -88,7 +97,8 @@ extension WeatherDetailsVC : WeatherDetailsVCProtocol {
     }
     
     func showForecastData(response: [WeatherResponse]) {
-        
+        self.weekDataList = response
+        tableView.reloadData()
     }
     
 

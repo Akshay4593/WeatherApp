@@ -41,8 +41,8 @@ class ForecastTVCell: UITableViewCell {
         
     }
     
-    func configureCell(forecastResponse: ForecastResponse) {
-        weekData = forecastResponse.list
+    func configureCell(data: [WeatherResponse]) {
+        weekData = data
     }
     
     
