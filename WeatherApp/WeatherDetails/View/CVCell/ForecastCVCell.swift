@@ -10,4 +10,18 @@ import UIKit
 
 class ForecastCVCell: UICollectionViewCell {
     
+    @IBOutlet weak var dayLbl: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
+    
+    @IBOutlet weak var tempLabl: UILabel!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    func configureCell(data: WeatherResponse){
+
+    }
+  
 }

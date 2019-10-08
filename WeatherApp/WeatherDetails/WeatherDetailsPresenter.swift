@@ -30,6 +30,13 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     private var weatherApiStatus: ApiStatus = .none
     private var forecastApiStatus: ApiStatus = .none
     
+    private var forecastResponse: ForecastResponse?
+    private var weatherResponse: WeatherResponse?
+    
+    private var datesArray: [Int] = []
+    
+    private var requiredForecastList: [WeatherResponse]? = []
+    
     init(city: String) {
         self.cityName = city
     }
@@ -57,17 +64,72 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
         interactor?.makeForecastRequest(cityName: cityName!)
     }
     
+    private func showDataOnAllSuccess(){
+        
+        if forecastApiStatus == .success && weatherApiStatus == .success {
+            if let currentDayData = weatherResponse,
+                let weekData = requiredForecastList {
+                view?.showCurrentDayData(response: currentDayData)
+                guard let reqForecastList = self.requiredForecastList else {
+                    print("No list")
+                    return
+                }
+                view?.showForecastData(response: reqForecastList)
+            }
+        }
+    }
+    
+    
+    private func operationOnList(){
+        
+        guard let list = forecastResponse?.list else {
+            return
+        }
+        getRequiredForecastList(list: list)
+ 
+        guard let reqForecastList = self.requiredForecastList else {
+            print("No list")
+            return
+        }
+        print("required .list===>> \(reqForecastList.count)")
+        
+    }
+    
+    private func getRequiredForecastList(list: [WeatherResponse]){
+        
+        list.forEach({
+            let _date = $0.date ?? 0
+            let date = Date(timeIntervalSince1970: _date)
+            if let day = date.day,
+                let currentDay = Date().day {
+                if day != currentDay {
+                    if !datesArray.contains(day){
+                        datesArray.append(day)
+                        self.requiredForecastList?.append($0)
+                    }
+                }
+            }
+        })
+        
+    }
+    
 }
 
 extension WeatherDetailsPresenter : WeatherDetailsOutputInteractorProtocol {
     
     func onSuccessForecastRequest(response: ForecastResponse) {
         forecastApiStatus = .success
+        forecastResponse = response
+        operationOnList()
+        showDataOnAllSuccess()
+        
         
     }
     
     func onSuccessWeatherRequest(response: WeatherResponse) {
         weatherApiStatus = .success
+        weatherResponse = response
+        showDataOnAllSuccess()
     }
     
     

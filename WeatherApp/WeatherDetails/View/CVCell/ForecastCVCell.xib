@@ -66,6 +66,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="Cdx-JI-8yM"/>
             <size key="customSize" width="199" height="184"/>
+            <connections>
+                <outlet property="dayLbl" destination="uvz-gr-pwv" id="waN-jq-aXh"/>
+                <outlet property="imgView" destination="LRF-TJ-gQX" id="gLJ-70-9bL"/>
+                <outlet property="tempLabl" destination="ZEv-Ds-8h6" id="8bb-Xg-368"/>
+            </connections>
             <point key="canvasLocation" x="-175.19999999999999" y="112.44377811094454"/>
         </collectionViewCell>
     </objects>

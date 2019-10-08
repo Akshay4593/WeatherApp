@@ -16,6 +16,10 @@ protocol WeatherDetailsWireFrameProtocol: class {
 protocol WeatherDetailsVCProtocol  {
     var presenter: WeatherDetailsPresenterProtocol? { get set }
     
+    func showCurrentDayData(response: WeatherResponse)
+    
+    func showForecastData(response: [WeatherResponse])
+    
 }
 
 protocol WeatherDetailsPresenterProtocol : BasePresenter {

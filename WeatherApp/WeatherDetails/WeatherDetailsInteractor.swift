@@ -31,6 +31,7 @@ class WeatherDetailsInteractor : WeatherDetailsInputInteractorProtocol {
         ForecastRequest(city: cityName).response{ [weak self] (result) in
             switch result {
             case .success(let response):
+                self?.presenter?.onSuccessForecastRequest(response: response)
                 print("Success forecast")
                 break
             case .failure(let error):
