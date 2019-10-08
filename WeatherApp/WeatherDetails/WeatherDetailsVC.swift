@@ -16,7 +16,10 @@ class WeatherDetailsVC: UIViewController {
     private var currentDayData: WeatherResponse?
     
     private var weekDataList: [WeatherResponse]?
+    
+    var refreshControl = UIRefreshControl()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -36,17 +39,30 @@ class WeatherDetailsVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching data")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControl.Event.valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     
+    @objc func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        presenter?.viewWillAppear()
+    }
+    
+    private func reloadData(){
+        refreshControl.endRefreshing()
+        tableView.reloadData()
 
+    }
 }
 
 extension WeatherDetailsVC : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let reqListData = weekDataList {
+        if let _ = weekDataList {
             return 1
         }
         
@@ -93,12 +109,12 @@ extension WeatherDetailsVC : UITableViewDelegate {
 extension WeatherDetailsVC : WeatherDetailsVCProtocol {
     func showCurrentDayData(response: WeatherResponse) {
         self.currentDayData = response
-        tableView.reloadData()
+        reloadData()
     }
     
     func showForecastData(response: [WeatherResponse]) {
         self.weekDataList = response
-        tableView.reloadData()
+        reloadData()
     }
     
 

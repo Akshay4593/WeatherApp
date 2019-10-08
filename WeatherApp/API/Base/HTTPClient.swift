@@ -48,7 +48,7 @@ class HTTPClient: HTTPClientSerivce {
     }
     
     func dataTask(urlRequest: URLRequest, completion: @escaping ((Result<Data, APIError>) -> Void)) {
-        print("Request==>> \(urlRequest.url)")
+        print("Request==>> \(String(describing: urlRequest.url))")
         task = session.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 completion(Result.failure(APIError.apiError(error)))

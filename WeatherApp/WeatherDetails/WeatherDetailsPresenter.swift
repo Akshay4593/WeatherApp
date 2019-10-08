@@ -36,6 +36,9 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     private var datesArray: [Int] = []
     private var requiredForecastList: [WeatherResponse]? = []
     
+    weak var timer: Timer?
+
+    
     init(city: String) {
         self.cityName = city
     }
@@ -46,6 +49,25 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     
     func viewWillAppear() {
         makeApiCalls()
+    }
+    
+    
+    func startTimer() {
+        timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
+        timer = Timer.scheduledTimer(withTimeInterval: 300.0, repeats: true) { [weak self] _ in
+            // do something here
+            self?.makeApiCalls()
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+    }
+    
+    // if appropriate, make sure to stop your timer in `deinit`
+    
+    deinit {
+        stopTimer()
     }
     
     private func makeApiCalls(){
@@ -70,6 +92,9 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
                 let weekData = requiredForecastList {
                 view?.showCurrentDayData(response: currentDayData)
                 view?.showForecastData(response: weekData)
+                stopTimer()
+                startTimer()
+
             }
         }
     }
@@ -93,9 +118,7 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     private func getRequiredForecastList(list: [WeatherResponse]){
         
         list.forEach({
-            let _date = $0.date ?? 0
-            let date = Date(timeIntervalSince1970: _date)
-            if let day = date.day,
+            if let day = $0.dateInInt,
                 let currentDay = Date().day {
                 if day != currentDay {
                     if !datesArray.contains(day){

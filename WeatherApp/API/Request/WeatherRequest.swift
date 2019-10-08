@@ -27,6 +27,21 @@ class WeatherResponse: Codable {
     var rain: Rain?
     var dateText: String?
     
+   
+    
+    var dateInInt: Int? {
+      
+        if let _date = date {
+            let dateInDateFormat = Date(timeIntervalSince1970: _date)
+            let day = dateInDateFormat.day
+            return day
+        }
+       
+        return nil
+        
+    }
+    
+    
     enum CodingKeys: String, CodingKey {
         
         case timezone

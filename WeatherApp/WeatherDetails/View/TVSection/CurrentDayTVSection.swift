@@ -38,10 +38,13 @@ class CurrentDayTVSection: UITableViewCell {
         cityLbl.text = currentDayData.name ?? ""
         
         if let mainData = currentDayData.main {
-            avgTempLbl.text = "\(mainData.temp )"
-            minTempLbl.text = "\(mainData.tempMin )"
-            maxTempLbl.text = "\(mainData.tempMax )"
+            avgTempLbl.text = "\(mainData.temp.inCelcius) °C"
+            minTempLbl.text = "\(mainData.tempMin.inCelcius) °C"
+            maxTempLbl.text = "\(mainData.tempMax.inCelcius) °C"
         }
+        
+        
+
         
         if let weatherData = currentDayData.weather?.first{
             descriptionLbl.text = weatherData.description

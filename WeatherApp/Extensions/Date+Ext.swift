@@ -41,9 +41,7 @@ extension String {
 }
 
 extension Date {
-    
-    
-  
+      
     var day : Int? {
         
         let calendar = Calendar.current
