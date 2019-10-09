@@ -62,6 +62,24 @@ class CurrentDayTVSection: UITableViewCell {
         
     }
     
+    
+    func configureSection(dailyData: DailyData){
+        
+        cityLbl.text = dailyData.cityName
+        
+        avgTempLbl.text = "\(dailyData.avgTemp.inCelcius) °C"
+        minTempLbl.text = "\(dailyData.minTemp.inCelcius) °C"
+        maxTempLbl.text = "\(dailyData.maxTemp.inCelcius) °C"
+        descriptionLbl.text = dailyData.desc
+        if let urlInString = dailyData.imgUrl,
+            let imgUrl = URL(string: urlInString) {
+            imgView.kf.setImage(with: imgUrl)
+        }
+        
+        
+    }
+    
+    
     @IBAction func goBtnAction(_ sender: UIButton) {
         
         if let deleagte = delegate,

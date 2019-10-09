@@ -21,6 +21,15 @@ protocol WeatherDetailsVCProtocol  {
     
     func showForecastData(response: [WeatherResponse])
     
+    
+    
+    //Show data from local database
+    
+    func showDailyData(dailyData: DailyData?)
+    
+    func showWeeklyData(weeklyData: [WeeklyData]?)
+    
+    
 }
 
 protocol WeatherDetailsPresenterProtocol : BasePresenter {

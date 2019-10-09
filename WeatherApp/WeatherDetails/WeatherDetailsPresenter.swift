@@ -38,14 +38,18 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     private var requiredForecastList: [WeatherResponse]? = []
     
     weak var timer: Timer?
-
+    
+    private var weeklyData: [WeeklyData] = []
+    private var dailyData: [DailyData] = []
+    
     
     init(city: String) {
         self.cityName = city
     }
     
     func viewDidLoad() {
-        
+         weeklyData = CoreDataManager.shared.fetchAllWeeklyData()
+         dailyData = CoreDataManager.shared.fetchAllDailyData()
     }
     
     func viewWillAppear() {
@@ -92,6 +96,10 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
             if let currentDayData = weatherResponse,
                 let weekData = requiredForecastList {
                 setFlagInUserDefault(flag: true)
+                
+                CoreDataManager.shared.clearData()
+                let weeklyDataInDB = CoreDataManager.shared.insertWeeklyData(list: weekData)
+                let dailyDataInDB = CoreDataManager.shared.insertDailyData(data: currentDayData)
                 view?.showCurrentDayData(response: currentDayData)
                 view?.showForecastData(response: weekData)
                 stopTimer()
@@ -139,8 +147,17 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     }
     
     func showCityNameScreen(city: String) {
-        
         wireFrame?.goToCityNameScreen(city: city, view: view!)
+    }
+    
+    func showDataFromCoreData(){
+        
+        if let dailyData = dailyData.first {
+            view?.showDailyData(dailyData: dailyData)
+        }
+        
+        view?.showWeeklyData(weeklyData: weeklyData)
+        
     }
     
 }
@@ -152,6 +169,7 @@ extension WeatherDetailsPresenter : WeatherDetailsOutputInteractorProtocol {
         forecastResponse = response
         operationOnList()
         showDataOnAllSuccess()
+        
         
         
     }

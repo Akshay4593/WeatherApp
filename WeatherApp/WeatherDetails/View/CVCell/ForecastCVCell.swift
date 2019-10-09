@@ -34,7 +34,7 @@ class ForecastCVCell: UICollectionViewCell {
         
         let minTemp = mainData.tempMin
         let maxTemp = mainData.tempMax
-        tempLabl.text = "\(minTemp)/\(maxTemp)"
+        tempLabl.text = "\(minTemp) °C /\(maxTemp) °C"
         }
         
         if let weatherData = data.weather?.first {
@@ -44,6 +44,28 @@ class ForecastCVCell: UICollectionViewCell {
         }
     
         
+    }
+    
+    func configureCell(data: WeeklyData) {
+        
+        let dateInTimestramp = data.dateInTimeStramp
+        let dateInDateFormat = Date(timeIntervalSince1970: dateInTimestramp)
+        
+        if let dayInWeek = dateInDateFormat.dayInWeek {
+            dayLbl.text = dayInWeek
+        }
+        
+        let minTemp = data.minTemp.inCelcius
+        let maxTemp = data.maxTemp.inCelcius
+        
+        tempLabl.text = "\(minTemp) °C/\(maxTemp) °C"
+        
+        if let urlInString = data.imgUrl,
+             let imgUrl = URL(string: urlInString)  {
+            imgView.kf.setImage(with: imgUrl)
+
+        }
+      
     }
   
 }

@@ -41,6 +41,16 @@ class WeatherResponse: Codable {
         
     }
     
+    var dayInWeek: String? {
+        
+        if let _date = date {
+            let dateInDateFormat = Date(timeIntervalSince1970: _date)
+            let dayInWeek = dateInDateFormat.dayInWeek
+            return dayInWeek
+        }
+        
+        return nil
+    }
     
     enum CodingKeys: String, CodingKey {
         

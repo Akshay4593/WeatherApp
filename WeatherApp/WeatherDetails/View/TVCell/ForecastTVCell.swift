@@ -14,6 +14,8 @@ class ForecastTVCell: UITableViewCell {
     
     var weekData: [WeatherResponse]?
     
+    var weeklyData: [WeeklyData]?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -61,6 +63,10 @@ class ForecastTVCell: UITableViewCell {
         weekData = data
     }
     
+    func configureCell(weeklyData: [WeeklyData]) {
+        
+        self.weeklyData = weeklyData
+    }
     
 
 }
@@ -72,6 +78,12 @@ extension ForecastTVCell : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCVCell", for: indexPath) as! ForecastCVCell
+        
+        if let weeklyData = weeklyData {
+            let weekData = weeklyData[indexPath.row]
+            
+        }
+        
         if let weekData = self.weekData {
             let dailyData = weekData[indexPath.item]
             cell.configureCell(data: dailyData)

@@ -14,10 +14,12 @@ class WeatherDetailsVC: UIViewController {
     var presenter: WeatherDetailsPresenterProtocol?
     
     private var currentDayData: WeatherResponse?
-    
     private var weekDataList: [WeatherResponse]?
     
     var refreshControl = UIRefreshControl()
+    
+    private var dailyData: DailyData?
+    private var weeklyData: [WeeklyData]?
 
     
     override func viewDidLoad() {
@@ -74,21 +76,32 @@ extension WeatherDetailsVC : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastTVCell", for: indexPath) as! ForecastTVCell
     
+        if let weeklyData = self.weeklyData {
+            cell.configureCell(weeklyData: weeklyData)
+        }
+        
         if let reqListData = weekDataList {
             cell.configureCell(data: reqListData)
         }
-        
+  
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //  let sectionView = tableView.dequeueReusableCell(withIdentifier: "CurrentDayTVSection") as! CurrentDayTVSection
+        
+        
         let sectionView = (Bundle.main.loadNibNamed("CurrentDayTVSection", owner: self, options: nil)![0] as? CurrentDayTVSection)
         sectionView?.delegate = self
+        if let dailyData = self.dailyData {
+            sectionView?.configureSection(dailyData: dailyData)
+        }
+        
         if let currentDayData = self.currentDayData {
             sectionView?.configureSection(currentDayData: currentDayData)
         }
+    
+        
         return sectionView
         
     }
@@ -108,6 +121,17 @@ extension WeatherDetailsVC : UITableViewDelegate {
 }
 
 extension WeatherDetailsVC : WeatherDetailsVCProtocol {
+    
+    func showDailyData(dailyData: DailyData?) {
+        self.dailyData = dailyData
+        reloadData()
+    }
+    
+    func showWeeklyData(weeklyData: [WeeklyData]?) {
+        self.weeklyData = weeklyData
+        reloadData()
+    }
+    
     func showCurrentDayData(response: WeatherResponse) {
         self.currentDayData = response
         reloadData()

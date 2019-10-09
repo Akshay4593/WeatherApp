@@ -72,7 +72,24 @@ class CoreDataManager {
             
             guard let weeklyData = NSEntityDescription.insertNewObject(forEntityName: "WeeklyData", into: backgroundContext) as? WeeklyData else { return nil }
             
-            weeklyData.dateInTimeStramp = item.date!
+            
+            if let _date = item.date {
+                weeklyData.dateInTimeStramp = _date
+            }
+            if let dayInWeek = item.dayInWeek {
+                weeklyData.dayInWeek = dayInWeek
+            }
+            
+            if let weatherData = item.weather?.first {
+                weeklyData.imgUrl = weatherData.imageFullPath
+            }
+            
+            if let mainData = item.main {
+                weeklyData.minTemp = mainData.tempMin
+                weeklyData.maxTemp = mainData.tempMax
+                
+            }
+            
             allWeeklyData.append(weeklyData)
            
             save()
@@ -85,24 +102,68 @@ class CoreDataManager {
     @discardableResult
     func insertDailyData(data:WeatherResponse) -> DailyData? {
         
-           guard let dailyData = NSEntityDescription.insertNewObject(forEntityName: "DailyData", into: backgroundContext) as? DailyData else { return nil }
+        guard let dailyData = NSEntityDescription.insertNewObject(forEntityName: "DailyData", into: backgroundContext) as? DailyData else { return nil }
         
-//        @NSManaged public var cityName: String?
-//        @NSManaged public var avgTemp: Double
-//        @NSManaged public var minTemp: Double
-//        @NSManaged public var maxTemp: Double
-//        @NSManaged public var desc: String?
-//        @NSManaged public var imgUrl: String?
-//        
-//        
-//        
-//        
-//        
-//            dailyData.minTemp = data.main?.tempMin
-//            allWeeklyData.append(weeklyData)
-            
-            save()
-            return dailyData
+        
+        if let mainData = data.main {
+            dailyData.avgTemp = mainData.temp
+            dailyData.minTemp = mainData.tempMin
+            dailyData.maxTemp = mainData.tempMax
+        }
+        
+        if let cityName = data.name {
+            dailyData.cityName = cityName
+        }
+        
+        if let weatherData = data.weather?.first {
+            dailyData.imgUrl = weatherData.imageFullPath
+            dailyData.desc = weatherData.description
+        }
+        allDailyData.append(dailyData)
+        
+        save()
+        return dailyData
+        
+    }
+    
+    
+    func clearData(){
+  
+        deleteDailyData()
+        deleteWeeklyData()
+      
+    }
+    
+    
+    private func deleteDailyData(){
+        
+        let dailyDataFetchRequest: NSFetchRequest<DailyData> = DailyData.fetchRequest()
+        if let results = try? persistentContainer.viewContext.fetch(dailyDataFetchRequest) {
+            for object in results {
+                do {
+                    try backgroundContext.delete(object)
+                } catch {
+                    print("Save error \(error)")
+                }
+            }
+        }
+        
+    }
+    
+    
+    private func deleteWeeklyData(){
+        
+        let weeklyDataFetchRequest: NSFetchRequest<WeeklyData> = WeeklyData.fetchRequest()
+        
+        if let results = try? persistentContainer.viewContext.fetch(weeklyDataFetchRequest) {
+            for object in results {
+                do {
+                    try backgroundContext.delete(object)
+                } catch {
+                    print("Save error \(error)")
+                }
+            }
+        }
         
     }
     
