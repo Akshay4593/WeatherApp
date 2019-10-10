@@ -20,6 +20,7 @@ class WeatherDetailsInteractor : WeatherDetailsInputInteractorProtocol {
                 self?.presenter?.onSuccessWeatherRequest(response: response)
                 break
             case .failure(let error):
+                self?.presenter?.onWeatherError(error: error)
                 print("failure===>> \(error)")
 
                 break
@@ -35,15 +36,13 @@ class WeatherDetailsInteractor : WeatherDetailsInputInteractorProtocol {
                 print("Success forecast")
                 break
             case .failure(let error):
+                self?.presenter?.onForecastError(error: error)
                 print("failure===>> \(error)")
                 
                 break
             }
         }
     }
-    
-
-    
-    
+   
 }
 

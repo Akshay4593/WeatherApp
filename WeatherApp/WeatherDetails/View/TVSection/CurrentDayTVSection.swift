@@ -16,6 +16,9 @@ protocol CurrentDayTVSectionDelegate: class{
 
 class CurrentDayTVSection: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var cityLbl: UILabel!
     @IBOutlet weak var goBtn: UIButton!
     @IBOutlet weak var imgView: UIImageView!
@@ -33,6 +36,7 @@ class CurrentDayTVSection: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setTheme()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,9 +45,33 @@ class CurrentDayTVSection: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    private func setTheme(){
+        
+        AppTheme.applyThemeHeavyFont(to: [cityLbl] , size: 16.0)
+        AppTheme.applyThemeBoldFont(to: [avgTempLbl], size: 20.0)
+        AppTheme.applyThemeMediumFont(to: [maxTempLbl, minTempLbl], size: 14.0)
+        AppTheme.applyThemeMediumFont(to: [descriptionLbl], size: 18.0)
+
+        goBtn.setTitle(" > ", for: .normal)
+        AppTheme.applyThemeBoldFont(to: [goBtn], size: 18.0)
+        
+        goBtn.backgroundColor = .clear
+        goBtn.setTitleColor(Color.White.value, for: .normal)
+        containerView.backgroundColor = Color.BackgroundLightBlue.value
+        
+        AppTheme.applyThemeColor(to: [cityLbl, avgTempLbl, minTempLbl, maxTempLbl,descriptionLbl], color: Color.White.value)
+
+        horizontalLineLbl.backgroundColor = Color.White.value
+        
+        upperView.layer.borderWidth = 1.0
+        upperView.layer.borderColor = Color.White.value.cgColor
+        upperView.layer.cornerRadius = 20.0
+
+    }
+    
     
     func configureSection(currentDayData: WeatherResponse){
-        cityLbl.text = currentDayData.name ?? ""
+        cityLbl.text = currentDayData.name?.capitalized ?? ""
         
         if let mainData = currentDayData.main {
             avgTempLbl.text = "\(mainData.temp.inCelcius) °C"
@@ -52,7 +80,7 @@ class CurrentDayTVSection: UITableViewCell {
         }
 
         if let weatherData = currentDayData.weather?.first{
-            descriptionLbl.text = weatherData.description
+            descriptionLbl.text = weatherData.description.capitalized
             let urlInString = weatherData.imageFullPath
             let imgUrl = URL(string: urlInString)
             imgView.kf.setImage(with: imgUrl)

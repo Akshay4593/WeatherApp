@@ -11,6 +11,7 @@ import Kingfisher
 
 class ForecastCVCell: UICollectionViewCell {
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var dayLbl: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     
@@ -19,7 +20,20 @@ class ForecastCVCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setTheme()
     }
+    
+    
+    func setTheme() {
+        
+        AppTheme.applyThemeRegularFont(to: [tempLabl], size: 12.0)
+        AppTheme.applyThemeMediumFont(to: [dayLbl], size: 16.0)
+        containerView.backgroundColor = Color.BackgroundLightBlue.value
+
+        AppTheme.applyThemeColor(to: [dayLbl, tempLabl], color: Color.White.value)
+    
+    }
+    
     
     func configureCell(data: WeatherResponse){
         
@@ -32,9 +46,9 @@ class ForecastCVCell: UICollectionViewCell {
         
        if let mainData = data.main {
         
-        let minTemp = mainData.tempMin
-        let maxTemp = mainData.tempMax
-        tempLabl.text = "\(minTemp) °C /\(maxTemp) °C"
+        let minTemp = mainData.tempMin.inCelcius
+        let maxTemp = mainData.tempMax.inCelcius
+        tempLabl.text = "\(minTemp)° /\(maxTemp)°"
         }
         
         if let weatherData = data.weather?.first {

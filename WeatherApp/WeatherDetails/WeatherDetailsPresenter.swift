@@ -16,10 +16,14 @@ enum ApiStatus {
     case success
 }
 
+enum WheatherDetailsFor {
+    case showingOfflineData
+    case showingApiData
+}
 
 class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
-
-
+    
+    
     var view: WeatherDetailsVCProtocol?
     
     var interactor: WeatherDetailsInputInteractorProtocol?
@@ -27,6 +31,13 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     var wireFrame: WeatherDetailsWireFrameProtocol?
     
     var cityName: String? = ""
+    
+    var wheatherDetailsType: WheatherDetailsFor = .showingOfflineData {
+        didSet {
+            view?.showDataType(type: wheatherDetailsType)
+        }
+    }
+    
     
     private var weatherApiStatus: ApiStatus = .none
     private var forecastApiStatus: ApiStatus = .none
@@ -48,8 +59,9 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     }
     
     func viewDidLoad() {
-         weeklyData = CoreDataManager.shared.fetchAllWeeklyData()
-         dailyData = CoreDataManager.shared.fetchAllDailyData()
+        weeklyData = CoreDataManager.shared.fetchAllWeeklyData()
+        dailyData = CoreDataManager.shared.fetchAllDailyData()
+        showDataFromCoreData()
     }
     
     func viewWillAppear() {
@@ -61,7 +73,7 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
         timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
         timer = Timer.scheduledTimer(withTimeInterval: 300.0, repeats: true) { [weak self] _ in
             // do something here
-            self?.makeApiCalls()
+        self?.makeApiCalls()
         }
     }
     
@@ -82,12 +94,18 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
     
     private func makeWeatherRequestWebCall(){
         weatherApiStatus = .started
-        interactor?.makeWeatherRequest(cityName: cityName!)
+        guard let cityName = cityName else {
+            return
+        }
+        interactor?.makeWeatherRequest(cityName: cityName)
     }
     
     private func makeForecastRequestWebCall(){
         forecastApiStatus = .started
-        interactor?.makeForecastRequest(cityName: cityName!)
+        guard let cityName = cityName else {
+            return
+        }
+        interactor?.makeForecastRequest(cityName: cityName)
     }
     
     private func showDataOnAllSuccess(){
@@ -98,13 +116,14 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
                 setFlagInUserDefault(flag: true)
                 
                 CoreDataManager.shared.clearData()
-                let weeklyDataInDB = CoreDataManager.shared.insertWeeklyData(list: weekData)
-                let dailyDataInDB = CoreDataManager.shared.insertDailyData(data: currentDayData)
+                let _ = CoreDataManager.shared.insertWeeklyData(list: weekData)
+                let _ = CoreDataManager.shared.insertDailyData(data: currentDayData)
                 view?.showCurrentDayData(response: currentDayData)
                 view?.showForecastData(response: weekData)
+                wheatherDetailsType = .showingApiData
                 stopTimer()
                 startTimer()
-
+                
             }
         }
     }
@@ -116,7 +135,7 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
             return
         }
         getRequiredForecastList(list: list)
- 
+        
         guard let reqForecastList = self.requiredForecastList else {
             print("No list")
             return
@@ -146,8 +165,8 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
         UserDefaults.standard.set(flag, forKey: Constant.USER_DEFAUL_KEY)
     }
     
-    func showCityNameScreen(city: String) {
-        wireFrame?.goToCityNameScreen(city: city, view: view!)
+    func showCityNameScreen(city: String, delegate: CityNameProtocol) {
+        wireFrame?.goToCityNameScreen(city: city, view: view!, delegate: delegate)
     }
     
     func showDataFromCoreData(){
@@ -155,23 +174,34 @@ class WeatherDetailsPresenter : WeatherDetailsPresenterProtocol {
         if let dailyData = dailyData.first {
             view?.showDailyData(dailyData: dailyData)
         }
-        
         view?.showWeeklyData(weeklyData: weeklyData)
-        
+        wheatherDetailsType = .showingOfflineData
     }
     
 }
 
 extension WeatherDetailsPresenter : WeatherDetailsOutputInteractorProtocol {
     
+    func onWeatherError(error: APIError) {
+        weatherApiStatus = .error
+        view?.hideLoading()
+        view?.makeToast(msg: error.description)
+
+    }
+    
+    func onForecastError(error: APIError) {
+        forecastApiStatus = .error
+        view?.hideLoading()
+        view?.makeToast(msg: error.description)
+    }
+
+    
     func onSuccessForecastRequest(response: ForecastResponse) {
         forecastApiStatus = .success
         forecastResponse = response
         operationOnList()
         showDataOnAllSuccess()
-        
-        
-        
+ 
     }
     
     func onSuccessWeatherRequest(response: WeatherResponse) {

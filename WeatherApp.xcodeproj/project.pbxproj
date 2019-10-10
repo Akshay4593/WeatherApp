@@ -14,6 +14,21 @@
 		786B883C234D179D00D59C99 /* WeeklyData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B8838234D179D00D59C99 /* WeeklyData+CoreDataClass.swift */; };
 		786B883D234D179D00D59C99 /* WeeklyData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B8839234D179D00D59C99 /* WeeklyData+CoreDataProperties.swift */; };
 		786B883F234D24A300D59C99 /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B883E234D24A300D59C99 /* Double+Ext.swift */; };
+		789C316A234E2171005D0FED /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3169234E2171005D0FED /* UIViewController+Ext.swift */; };
+		789C316D234E250F005D0FED /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C316C234E250F005D0FED /* UIColor.swift */; };
+		789C3170234E2933005D0FED /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C316F234E2933005D0FED /* UIFont+Ext.swift */; };
+		789C3172234E2960005D0FED /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C3171234E2960005D0FED /* Theme.swift */; };
+		789C3180234E29C4005D0FED /* SF-Pro-Text-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 789C3175234E29C4005D0FED /* SF-Pro-Text-Heavy.otf */; };
+		789C3181234E29C4005D0FED /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 789C3176234E29C4005D0FED /* SF-Pro-Text-Light.otf */; };
+		789C3182234E29C4005D0FED /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 789C3177234E29C4005D0FED /* SF-Pro-Text-Regular.otf */; };
+		789C3183234E29C4005D0FED /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 789C3178234E29C4005D0FED /* SF-Pro-Text-Bold.otf */; };
+		789C3184234E29C4005D0FED /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 789C3179234E29C4005D0FED /* SF-Pro-Text-Semibold.otf */; };
+		789C3185234E29C4005D0FED /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 789C317A234E29C4005D0FED /* SF-Pro-Text-Medium.otf */; };
+		789C3186234E29C4005D0FED /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 789C317C234E29C4005D0FED /* Quicksand-Bold.ttf */; };
+		789C3187234E29C4005D0FED /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 789C317D234E29C4005D0FED /* Quicksand-Medium.ttf */; };
+		789C3188234E29C4005D0FED /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 789C317E234E29C4005D0FED /* Quicksand-Regular.ttf */; };
+		789C3189234E29C4005D0FED /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 789C317F234E29C4005D0FED /* Quicksand-Light.ttf */; };
+		789C318B234E2BF5005D0FED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789C318A234E2BF5005D0FED /* UIColor+Ext.swift */; };
 		78B6FA4523487A9C009525EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6FA4423487A9C009525EE /* AppDelegate.swift */; };
 		78B6FA4723487A9C009525EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B6FA4623487A9C009525EE /* ViewController.swift */; };
 		78B6FA4A23487A9C009525EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78B6FA4823487A9C009525EE /* Main.storyboard */; };
@@ -56,6 +71,21 @@
 		786B8838234D179D00D59C99 /* WeeklyData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		786B8839234D179D00D59C99 /* WeeklyData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeeklyData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		786B883E234D24A300D59C99 /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
+		789C3169234E2171005D0FED /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		789C316C234E250F005D0FED /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		789C316F234E2933005D0FED /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		789C3171234E2960005D0FED /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		789C3175234E29C4005D0FED /* SF-Pro-Text-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Heavy.otf"; sourceTree = "<group>"; };
+		789C3176234E29C4005D0FED /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
+		789C3177234E29C4005D0FED /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		789C3178234E29C4005D0FED /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		789C3179234E29C4005D0FED /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		789C317A234E29C4005D0FED /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		789C317C234E29C4005D0FED /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		789C317D234E29C4005D0FED /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		789C317E234E29C4005D0FED /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		789C317F234E29C4005D0FED /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		789C318A234E2BF5005D0FED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		78B6FA4123487A9C009525EE /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B6FA4423487A9C009525EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78B6FA4623487A9C009525EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +148,56 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		789C316B234E24A6005D0FED /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				789C316C234E250F005D0FED /* UIColor.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		789C316E234E2906005D0FED /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				789C316F234E2933005D0FED /* UIFont+Ext.swift */,
+				789C3171234E2960005D0FED /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		789C3173234E2998005D0FED /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				789C317B234E29C4005D0FED /* Quicksand */,
+				789C3174234E29C4005D0FED /* SF Pro */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		789C3174234E29C4005D0FED /* SF Pro */ = {
+			isa = PBXGroup;
+			children = (
+				789C3175234E29C4005D0FED /* SF-Pro-Text-Heavy.otf */,
+				789C3176234E29C4005D0FED /* SF-Pro-Text-Light.otf */,
+				789C3177234E29C4005D0FED /* SF-Pro-Text-Regular.otf */,
+				789C3178234E29C4005D0FED /* SF-Pro-Text-Bold.otf */,
+				789C3179234E29C4005D0FED /* SF-Pro-Text-Semibold.otf */,
+				789C317A234E29C4005D0FED /* SF-Pro-Text-Medium.otf */,
+			);
+			path = "SF Pro";
+			sourceTree = "<group>";
+		};
+		789C317B234E29C4005D0FED /* Quicksand */ = {
+			isa = PBXGroup;
+			children = (
+				789C317C234E29C4005D0FED /* Quicksand-Bold.ttf */,
+				789C317D234E29C4005D0FED /* Quicksand-Medium.ttf */,
+				789C317E234E29C4005D0FED /* Quicksand-Regular.ttf */,
+				789C317F234E29C4005D0FED /* Quicksand-Light.ttf */,
+			);
+			path = Quicksand;
+			sourceTree = "<group>";
+		};
 		78B6FA3823487A9C009525EE = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +222,9 @@
 				78B6FA4423487A9C009525EE /* AppDelegate.swift */,
 				78B6FA4623487A9C009525EE /* ViewController.swift */,
 				78B6FA5623487D5B009525EE /* AppNavigationCordinator.swift */,
+				789C3173234E2998005D0FED /* Fonts */,
+				789C316E234E2906005D0FED /* Theme */,
+				789C316B234E24A6005D0FED /* Common */,
 				78E08EF5234E11CA0031BE7C /* Resources */,
 				78E78ADE234CD42E00BB4D62 /* CoreData */,
 				78E78ADB234CAE6200BB4D62 /* Extensions */,
@@ -240,6 +323,8 @@
 			children = (
 				78E78ADC234CAE8900BB4D62 /* Date+Ext.swift */,
 				786B883E234D24A300D59C99 /* Double+Ext.swift */,
+				789C3169234E2171005D0FED /* UIViewController+Ext.swift */,
+				789C318A234E2BF5005D0FED /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -377,13 +462,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789C3182234E29C4005D0FED /* SF-Pro-Text-Regular.otf in Resources */,
+				789C3187234E29C4005D0FED /* Quicksand-Medium.ttf in Resources */,
 				78B6FA4F23487A9D009525EE /* LaunchScreen.storyboard in Resources */,
+				789C3189234E29C4005D0FED /* Quicksand-Light.ttf in Resources */,
+				789C3183234E29C4005D0FED /* SF-Pro-Text-Bold.otf in Resources */,
 				78E08EF7234E11F80031BE7C /* city.list.json in Resources */,
+				789C3186234E29C4005D0FED /* Quicksand-Bold.ttf in Resources */,
 				78B6FA5B23487F7E009525EE /* Weather.storyboard in Resources */,
 				78FC4AD0234A0D5000143B96 /* ForecastCVCell.xib in Resources */,
+				789C3181234E29C4005D0FED /* SF-Pro-Text-Light.otf in Resources */,
+				789C3188234E29C4005D0FED /* Quicksand-Regular.ttf in Resources */,
+				789C3180234E29C4005D0FED /* SF-Pro-Text-Heavy.otf in Resources */,
 				78FC4AC7234A00DA00143B96 /* CurrentDayTVSection.xib in Resources */,
 				78B6FA4C23487A9D009525EE /* Assets.xcassets in Resources */,
+				789C3184234E29C4005D0FED /* SF-Pro-Text-Semibold.otf in Resources */,
 				78FC4ACB234A0B9500143B96 /* ForecastTVCell.xib in Resources */,
+				789C3185234E29C4005D0FED /* SF-Pro-Text-Medium.otf in Resources */,
 				78B6FA4A23487A9C009525EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,22 +543,27 @@
 				78B6FA6B234892E1009525EE /* APIError.swift in Sources */,
 				78FC4AC32349ADBC00143B96 /* ForecastRequest.swift in Sources */,
 				78E78AF7234D12E300BB4D62 /* CoreDataManager.swift in Sources */,
+				789C3170234E2933005D0FED /* UIFont+Ext.swift in Sources */,
 				78B6FA65234881B5009525EE /* WeatherDetailsProtocols.swift in Sources */,
 				786B883C234D179D00D59C99 /* WeeklyData+CoreDataClass.swift in Sources */,
 				78FC4AC9234A012E00143B96 /* CurrentDayTVSection.swift in Sources */,
+				789C318B234E2BF5005D0FED /* UIColor+Ext.swift in Sources */,
 				78B6FA4723487A9C009525EE /* ViewController.swift in Sources */,
 				78B6FA6D23489307009525EE /* HTTPClient.swift in Sources */,
 				786B883D234D179D00D59C99 /* WeeklyData+CoreDataProperties.swift in Sources */,
 				78E78ADD234CAE8900BB4D62 /* Date+Ext.swift in Sources */,
 				786B883F234D24A300D59C99 /* Double+Ext.swift in Sources */,
+				789C316D234E250F005D0FED /* UIColor.swift in Sources */,
 				78FC4AC12349A38300143B96 /* WeatherResponseModels.swift in Sources */,
 				78B6FA6323488137009525EE /* WeatherDetailsWireframe.swift in Sources */,
 				786B883A234D179D00D59C99 /* DailyData+CoreDataClass.swift in Sources */,
 				78B6FA6F234893CB009525EE /* WeatherRoute.swift in Sources */,
+				789C3172234E2960005D0FED /* Theme.swift in Sources */,
 				78B6FA7223489704009525EE /* Constant.swift in Sources */,
 				78B6FA6123488109009525EE /* WeatherDetailsInteractor.swift in Sources */,
 				78B6FA692348912C009525EE /* APIRequest.swift in Sources */,
 				78B6FA4523487A9C009525EE /* AppDelegate.swift in Sources */,
+				789C316A234E2171005D0FED /* UIViewController+Ext.swift in Sources */,
 				78FC4AD2234A0E9400143B96 /* ForecastCVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

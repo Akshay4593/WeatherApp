@@ -21,8 +21,8 @@ class CoreDataManager {
     private var allWeeklyData: [WeeklyData] = []
     
     private var allDailyData: [DailyData] = []
-
-
+    
+    
     
     static var shared: CoreDataManager = {
         return CoreDataManager()
@@ -33,7 +33,7 @@ class CoreDataManager {
         self.persistentContainer = container
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         configure()
-
+        
     }
     
     private convenience init() {
@@ -53,7 +53,9 @@ class CoreDataManager {
     
     
     public func fetchAllWeeklyData() -> [WeeklyData] {
+        
         let request: NSFetchRequest<WeeklyData> = WeeklyData.fetchRequest()
+        request.returnsObjectsAsFaults = false
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? [WeeklyData]()
     }
@@ -64,15 +66,9 @@ class CoreDataManager {
         return results ?? [DailyData]()
     }
     
-    
-    @discardableResult
-    func insertWeeklyData(list:[WeatherResponse]) -> WeeklyData? {
-        
+    func insertWeeklyData(list:[WeatherResponse]) {
         for item in list {
-            
-            guard let weeklyData = NSEntityDescription.insertNewObject(forEntityName: "WeeklyData", into: backgroundContext) as? WeeklyData else { return nil }
-            
-            
+            guard let weeklyData = NSEntityDescription.insertNewObject(forEntityName: "WeeklyData", into: backgroundContext) as? WeeklyData else { return }
             if let _date = item.date {
                 weeklyData.dateInTimeStramp = _date
             }
@@ -87,22 +83,16 @@ class CoreDataManager {
             if let mainData = item.main {
                 weeklyData.minTemp = mainData.tempMin
                 weeklyData.maxTemp = mainData.tempMax
-                
             }
             
             allWeeklyData.append(weeklyData)
-           
             save()
-            return weeklyData
         }
-        
-        return nil
     }
     
-    @discardableResult
-    func insertDailyData(data:WeatherResponse) -> DailyData? {
+    func insertDailyData(data:WeatherResponse) {
         
-        guard let dailyData = NSEntityDescription.insertNewObject(forEntityName: "DailyData", into: backgroundContext) as? DailyData else { return nil }
+        guard let dailyData = NSEntityDescription.insertNewObject(forEntityName: "DailyData", into: backgroundContext) as? DailyData else { return }
         
         
         if let mainData = data.main {
@@ -122,53 +112,54 @@ class CoreDataManager {
         allDailyData.append(dailyData)
         
         save()
-        return dailyData
-        
     }
     
     
     func clearData(){
-  
+        
         deleteDailyData()
         deleteWeeklyData()
-      
+        
     }
     
     
     private func deleteDailyData(){
-        
         let dailyDataFetchRequest: NSFetchRequest<DailyData> = DailyData.fetchRequest()
         if let results = try? persistentContainer.viewContext.fetch(dailyDataFetchRequest) {
-            for object in results {
-                do {
-                    try backgroundContext.delete(object)
-                } catch {
-                    print("Save error \(error)")
+            do {
+                let appDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+                
+                for object in results {
+                    context.delete(object)
                 }
+                try? context.save()
             }
         }
+        
+        return
         
     }
     
     
     private func deleteWeeklyData(){
-        
         let weeklyDataFetchRequest: NSFetchRequest<WeeklyData> = WeeklyData.fetchRequest()
-        
         if let results = try? persistentContainer.viewContext.fetch(weeklyDataFetchRequest) {
-            for object in results {
-                do {
-                    try backgroundContext.delete(object)
-                } catch {
-                    print("Save error \(error)")
+            
+            do {
+                let appDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+                
+                for object in results {
+                    context.delete(object)
                 }
+                try? context.save()
             }
         }
+        return
         
     }
-    
-    
- 
+
     func save() {
         if backgroundContext.hasChanges {
             do {
@@ -179,7 +170,6 @@ class CoreDataManager {
         }
         
     }
-    
-    
-    
+  
 }
+

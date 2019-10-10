@@ -12,14 +12,12 @@ import UIKit
 class WeatherDetailsWireframe : WeatherDetailsWireFrameProtocol {
     
     
-    func goToCityNameScreen(city: String, view: WeatherDetailsVCProtocol) {
-        
+    func goToCityNameScreen(city: String, view: WeatherDetailsVCProtocol, delegate: CityNameProtocol) {
         if let sourceVC = view as? UIViewController {
-            let cityNameVC = AppNavigationCordinator.shared.cityNameModule()
+            let cityNameVC = AppNavigationCordinator.shared.cityNameModule(city: city, delegate: delegate)
             sourceVC.present(cityNameVC, animated: true, completion: nil)
         }
     }
-    
     
     
 }

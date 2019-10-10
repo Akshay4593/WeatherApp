@@ -35,21 +35,27 @@ class AppNavigationCordinator {
         return vc
     }
     
-    func cityNameModule() -> UIViewController {
+    func cityNameModule(city: String, delegate: CityNameProtocol?) -> UIViewController {
         let vc = UIStoryboard(name: "Weather", bundle: nil)
             .instantiateViewController(withIdentifier: "CityNameVC") as! CityNameVC
+        vc.cityName = city
+        vc.delegate = delegate
         return vc
     }
     
     func setRootVC() -> UIViewController {
         
         let flag = UserDefaults.standard.bool(forKey: Constant.USER_DEFAUL_KEY) ?? false
-        
+      
         if flag {
-            return createWeatherDetailsModule(city: "Mumbai")
+            guard let cityName = CoreDataManager.shared.fetchAllDailyData().first?.cityName else {
+                return UIViewController()
+            }
+            return createWeatherDetailsModule(city: cityName)
             
         } else {
-            return cityNameModule()
+            
+            return cityNameModule(city: "", delegate: nil)
         }
     }
 

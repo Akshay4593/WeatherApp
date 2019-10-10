@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NA9-wi-dA3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NA9-wi-dA3">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -48,14 +48,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="udp-50-GIH">
-                                <rect key="frame" x="30" y="218.5" width="315" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter City Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="udp-50-GIH">
+                                <rect key="frame" x="30" y="147" width="315" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="44W-6C-Y4I"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XpI-8v-3VH">
-                                <rect key="frame" x="164.5" y="278.5" width="46" height="30"/>
+                                <rect key="frame" x="221.5" y="217" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="FQ3-1l-04v"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="btnAction:" destination="Goe-Zg-ubn" eventType="touchUpInside" id="dKp-DS-n2Y"/>
@@ -67,14 +73,15 @@
                             <constraint firstItem="udp-50-GIH" firstAttribute="centerX" secondItem="3YG-yD-j9n" secondAttribute="centerX" id="aBO-fM-K9U"/>
                             <constraint firstItem="XpI-8v-3VH" firstAttribute="top" secondItem="udp-50-GIH" secondAttribute="bottom" constant="30" id="dbn-9A-xdY"/>
                             <constraint firstItem="U7W-s9-Bju" firstAttribute="trailing" secondItem="udp-50-GIH" secondAttribute="trailing" constant="30" id="gg8-ar-hcI"/>
-                            <constraint firstItem="XpI-8v-3VH" firstAttribute="centerX" secondItem="3YG-yD-j9n" secondAttribute="centerX" id="nGp-A9-lsU"/>
-                            <constraint firstItem="udp-50-GIH" firstAttribute="centerY" secondItem="3YG-yD-j9n" secondAttribute="centerY" multiplier="0.7" id="raw-Ns-jsa"/>
+                            <constraint firstItem="XpI-8v-3VH" firstAttribute="centerX" secondItem="3YG-yD-j9n" secondAttribute="centerX" multiplier="1.5" id="nGp-A9-lsU"/>
+                            <constraint firstItem="udp-50-GIH" firstAttribute="centerY" secondItem="3YG-yD-j9n" secondAttribute="centerY" multiplier="0.5" id="raw-Ns-jsa"/>
                             <constraint firstItem="udp-50-GIH" firstAttribute="leading" secondItem="U7W-s9-Bju" secondAttribute="leading" constant="30" id="z5d-nM-8E3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U7W-s9-Bju"/>
                     </view>
                     <connections>
                         <outlet property="cityTextField" destination="udp-50-GIH" id="Q4o-uR-830"/>
+                        <outlet property="goBtn" destination="XpI-8v-3VH" id="NTt-tv-zmb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDb-Ng-BhM" userLabel="First Responder" sceneMemberID="firstResponder"/>

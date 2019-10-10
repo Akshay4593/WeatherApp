@@ -23,15 +23,6 @@ extension WeatherRoute {
         return "\(baseUrl)/\(version)/\(resource)?APPID=\(Constant.API_KEY)"
     }
     
-    private var urlPath: String {
-        switch self {
-        case .weather:
-            return "movie/popular"
-        case .forecaste:
-            return "search/movie"
-        }
-    }
-    
     var url: URL {
         return URL(string: apiEndPoint)!
     }

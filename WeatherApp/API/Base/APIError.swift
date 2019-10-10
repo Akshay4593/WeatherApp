@@ -27,7 +27,7 @@ enum APIError: Error, CustomStringConvertible {
         case .emptyData:
             return "Empty response from the server"
         case let .invalidStatusCode(status):
-            return "Server is down with status code: \(status)"
+            return "No data found with status code: \(status)"
         case let .responseSerializationFailed(decodingError):
             return "Json Decoding Error: \(decodingError.localizedDescription)"
         case let .invalidRequestURL(url):
