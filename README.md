@@ -2,7 +2,7 @@
 
 # WeatherApp 
 
-IOS application written using Swift 4.2. It uses VIPER architecture.
+IOS application written using Swift 4.2. It uses CLEAN architecture.
 
 
 ### Prerequisites
